@@ -10,20 +10,19 @@ flutter-common-utils：基于flutter框架封装的一个通用工具包，里�
 
 可以将项目克隆到本地进行引入，也可以在 `yml`文件中通过 git方式引入。
 
-```yaml
+```text
 dependencies:
-	flutter:
-		sdk: flutter
-	# 本地引入 common_utils
-	common_utils:
-		path: ./common_utils
+  flutter:
+    sdk: flutter
+  # 本地引入 common_utils
+  common_utils:
+    path: ./common_utils
 
-
-	# git方式引入 common_utils
-	common_utils:
-		git:
-			url: git://github.com/ilovesshan/flutter-common-utils.git
-			ref: master
+  # git方式引入 common_utils
+  common_utils:
+    git:
+      url: git://github.com/ilovesshan/flutter-common-utils.git
+      ref: master
 ```
 
 
