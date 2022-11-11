@@ -12,15 +12,18 @@ flutter-common-utils：基于flutter框架封装的一个通用工具包，里�
 
 ```yaml
 dependencies:
-  flutter:
-	sdk: flutter
-  # 本地引入 common_utils
-  common_utils:
-	path: ./common_utils
-	
-  # git方式引入 common_utils
-  flutter-common-utils:
-  	git: https://github.com/ilovesshan/flutter-common-utils.git  # 地址以实际为准
+	flutter:
+		sdk: flutter
+	# 本地引入 common_utils
+	common_utils:
+		path: ./common_utils
+
+
+	# git方式引入 common_utils
+	common_utils:
+		git:
+			url: git://github.com/ilovesshan/flutter-common-utils.git
+			ref: master
 ```
 
 
@@ -56,9 +59,9 @@ class _ApplicationState extends State<Application> {
             initialRoute: YFRouter.splash,
             getPages: YFRouter.routes(),
             builder: (_, c) {
-                 // android状态栏为透明沉浸式
+                // android状态栏为透明沉浸式
                 AppInitialize.setSystemUiOverlayStyle();
-				// 屏幕适配
+                // 屏幕适配
                 AppInitialize.initScreenUtil(_);
                 return FlutterEasyLoading(
                     child: GestureDetector(
