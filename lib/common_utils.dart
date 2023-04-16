@@ -24,13 +24,14 @@ export 'package:amap_flutter_location/amap_location_option.dart';
 export 'package:amap_flutter_map/amap_flutter_map.dart';
 export 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 export 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 // export 'package:fluwx/fluwx.dart';
 export 'package:fluwx_no_pay/fluwx_no_pay.dart';
 export 'package:share_plus/share_plus.dart';
 export 'package:qr_flutter/qr_flutter.dart';
 export 'package:url_launcher/url_launcher.dart';
-export 'package:jpush_flutter/jpush_flutter.dart';
+// export 'package:jpush_flutter/jpush_flutter.dart';
 export 'package:jverify/jverify.dart';
 
 /// 函数类型
@@ -94,3 +95,4 @@ export 'src/utils/function_proxy.dart';
 export 'src/utils/location_util.dart';
 export 'src/utils/wx_util.dart';
 export 'src/utils/map_navigation_util.dart';
+export 'src/utils/toast_util.dart';

@@ -63,6 +63,7 @@ dependencies:
   qr_flutter: ^4.0.0
   # webview 插件
   webview_flutter: '2.0.13'
+
   flutter_webview_plugin: '0.4.0'
   #  flutter_webview_plugin:
   #    git: https://github.com/nuc134r/flutter_webview_plugin.git
@@ -85,11 +86,20 @@ dependencies:
   jverify: ^2.2.6
   # 极光推送
   jpush_flutter: ^2.4.0
+  # flutter toast轻提示
+  fluttertoast: ^8.2.1
   # github 集成
   # jpush_flutter:
   # git:
   #   url: git://github.com/jpush/jpush-flutter-plugin.git
   #   ref: master
+
+  # 音频播放
+  just_audio: 0.9.32
+  # 手机振动器
+  vibration: ^1.7.6
+  # 通知栏通知
+  flutter_local_notifications: ^9.5.3+1
 
 
 dev_dependencies:
