@@ -21,13 +21,69 @@ dependencies:
   # git方式引入 common_utils
   common_utils:
     git:
-      url: git://github.com/ilovesshan/flutter-common-utils.git
+      url: https://github.com/ilovesshan/flutter-common-utils.git
       ref: master
 ```
 
 
 
 #### 3、使用
+
+在Android配置文件中配置
+
+app/build.grade
+
+```java
+
+// ... 省略
+apply plugin: 'com.android.application'
+    apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+        android {
+        // 需要31
+        compileSdkVersion 31
+
+            compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        defaultConfig {
+            applicationId "com.ilovesshan.imusic.imusic_app"
+                ndk {
+                // abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a'
+                abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "windows_x64"
+            }
+            // 需要19
+            minSdkVersion 19
+
+                targetSdkVersion 30
+                versionCode flutterVersionCode.toInteger()
+                versionName flutterVersionName
+                manifestPlaceholders = [
+                // 配置高德地图信息
+                AMAP_KEY     : "xxx",
+                // 配置极光推送信息
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "xxx", // NOTE: JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+            ]
+        }
+
+        buildTypes {
+            release {
+                signingConfig signingConfigs.debug
+            }
+        }
+    }
+
+flutter {
+    source '../..'
+}
+
+```
+
+
 
 在项目主文件中进行配置
 
@@ -99,5 +155,4 @@ class YFRouter {
 
 
 #### 4、最后
-
 本项目工具库会长期更新维护下去...
