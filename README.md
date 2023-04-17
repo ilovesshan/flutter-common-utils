@@ -1,39 +1,113 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+###  flutter-common-utils
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+#### 1、简介
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+flutter-common-utils：基于flutter框架封装的一个通用工具包，里面包含了日常开发中的常用工具类以及通用界面，里面主要集成了较为流行的三方插件，例如：`provider` 、`get`、`dio`、`flutter_easyloading`、`flutter_screenutil`、`flutter_easyrefresh` 等等很多，具体可以查看 `pubspec.yaml` 文件
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
 
-## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+#### 2、导入
 
-## Getting started
+可以将项目克隆到本地进行引入，也可以在 `yml`文件中通过 git方式引入。
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```text
+dependencies:
+  flutter:
+    sdk: flutter
+  # 本地引入 common_utils
+  common_utils:
+    path: ./common_utils
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+  # git方式引入 common_utils
+  common_utils:
+    git:
+      url: https://github.com/ilovesshan/flutter-common-utils.git
+      ref: master
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+
+#### 3、使用
+
+在Android配置文件中配置
+
+app/build.grade（模块级别）
+
+```java
+compileSdkVersion 31
+minSdkVersion 19
+```
+
+
+
+在项目入口文件main.dart进行配置
+
+```dart
+import 'package:app/router/router.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+    runApp(const Application());
+}
+
+class Application extends StatefulWidget {
+    const Application({Key? key}) : super(key: key);
+
+    @override
+    State<Application> createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
+    @override
+    Widget build(BuildContext context) {
+        // 使用 GetMaterialApp
+        return GetMaterialApp(
+            // APP主题配色方案
+            theme: AppInitialize.appTheme(),
+            // 路由解决方案(也可自行配置)
+            initialRoute: YFRouter.splash,
+            getPages: YFRouter.routes(),
+            builder: (_, c) {
+                // android状态栏为透明沉浸式
+                AppInitialize.setSystemUiOverlayStyle();
+                // 屏幕适配
+                AppInitialize.initScreenUtil(_);
+                return FlutterEasyLoading(
+                    child: GestureDetector(
+                        child: c!,
+                        // 处理键盘
+                        onTap: ()=> AppInitialize.closeKeyBord(context)
+                    ),
+                );
+            },
+        );
+    }
+}
+
+```
+
+```dart
+// 路由文件信息(仅供参考)
+
+class YFRouter {
+    static const String splash = "/splash";
+    static const String menuContainer = "/menuContainer";
+    static const String login = "/login";
+
+    static List<GetPage> routes() {
+        return [
+            GetPage(name: splash, page: () => const SplashPage()),
+            GetPage(name: login, page: () => const LoginPage()),
+            GetPage(name: menuContainer, page: () => const MenuContainer()),
+        ];
+    }
+
+    static onUnknownRoute() {}
+}
+```
+
+
+
+#### 4、最后
+本项目工具库会长期更新维护下去...
