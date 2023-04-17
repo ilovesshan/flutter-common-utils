@@ -168,12 +168,13 @@ class LocationUtil {
   static void getAddressByLongitudeAndLatitude(double latitude, double longitude, OnResultChanged onResultChanged) async {
     final requestPath = CommonServiceUrls.getAddressByLongitudeAndLatitude + "?output=json&location=$longitude,$latitude&key=${CommonConfig.webKey}&radius=1000&extensions=all";
     try {
-        final result = await HttpHelper.getInstance().get(requestPath);
-        if(result!=null && TextUtils.isNotValid(result.data.toString()) && result.data["status"].toString() == "1"){
-          onResultChanged(result.data);
-        }
-        // printLog(StackTrace.current, result);
-        // result.data["regeocode"]["formatted_address"];
+      final result = await HttpHelper.getInstance().get(requestPath);
+      // if(result!=null && TextUtils.isNotValid(result.data.toString()) && result.data["status"].toString() == "1"){
+      if(result!=null && TextUtils.isNotValid(result["regeocode"].toString()) && result["status"].toString() == "1"){
+        onResultChanged(result["regeocode"]);
+      }
+      // printLog(StackTrace.current, result);
+      // result.data["regeocode"]["formatted_address"];
     } catch (e) {
       printLog(StackTrace.current, e.toString());
     }
