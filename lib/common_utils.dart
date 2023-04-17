@@ -95,3 +95,4 @@ export 'src/utils/location_util.dart';
 export 'src/utils/wx_util.dart';
 export 'src/utils/map_navigation_util.dart';
 export 'src/utils/toast_util.dart';
+export 'src/utils/x_update_util.dart';
