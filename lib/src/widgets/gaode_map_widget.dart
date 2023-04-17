@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 class GaoDeMapWidget extends StatefulWidget {
   ArgumentCallback<CameraPosition> onCameraMoveEnd;
   LatLng latLng;
-  GaoDeMapWidget(this.latLng,this.onCameraMoveEnd, {Key? key}) : super(key: key);
+
+  GaoDeMapWidget(this.latLng, this.onCameraMoveEnd, {Key? key})
+      : super(key: key);
 
   @override
   State<GaoDeMapWidget> createState() => _GaoDeMapWidgetState();
@@ -53,39 +55,41 @@ class _GaoDeMapWidgetState extends State<GaoDeMapWidget> {
               apiKey: const AMapApiKey(androidKey: CommonConfig.androidKey, iosKey: CommonConfig.iosKey),
 
               // 初始化地址
-              initialCameraPosition: CameraPosition(target: _currentLatLng, zoom: 15),
+              initialCameraPosition: CameraPosition(
+                  target: _currentLatLng, zoom: 15),
 
               // 当前位置marker
               markers: {
                 Marker(
                   infoWindow: const InfoWindow(title: "当前位置", snippet: ""),
-                  position: _currentLatLng,icon: BitmapDescriptor.defaultMarkerWithHue(0.0),
+                  position: _currentLatLng,
+                  icon: BitmapDescriptor.defaultMarkerWithHue(0.0),
                 )
               },
 
               // 地图创建完成回调 成功后会返回AMapController对象
-              onMapCreated: (AMapController controller){
+              onMapCreated: (AMapController controller) {
                 _mapController = controller;
                 getApprovalNumber();
                 setState(() {});
               },
 
               // 点击地图回调
-              onTap: (LatLng latLng){
+              onTap: (LatLng latLng) {
                 printLog(StackTrace.current, latLng.toString());
                 _currentLatLng = latLng;
                 setState(() {});
               },
 
               // 地图移动回调
-              onCameraMove:(CameraPosition cameraPosition){
+              onCameraMove: (CameraPosition cameraPosition) {
                 printLog(StackTrace.current, cameraPosition.toString());
                 _currentLatLng = cameraPosition.target;
                 setState(() {});
               },
 
               // 地图移动结束回调
-              onCameraMoveEnd:(CameraPosition cameraPosition){
+              onCameraMoveEnd: (CameraPosition cameraPosition) {
                 printLog(StackTrace.current, cameraPosition.toString());
                 _currentLatLng = cameraPosition.target;
                 setState(() {});
@@ -97,16 +101,21 @@ class _GaoDeMapWidgetState extends State<GaoDeMapWidget> {
         ),
 
         // 回到当前位置
-        Positioned(bottom: 320.h, right: 20.w,
-          child: GestureDetector(
-            child: Container(
-              width: 40.w, height: 40.w, decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20.r)), padding: EdgeInsets.all(7.w),
-              child: Image.asset("assets/common/location_current_address.png", width: 30.w, height: 30.w),
-            ),
-            onTap: (){
-              _mapController.moveCamera(CameraUpdate.newLatLng(_defaultLatLng));
-            },
-          )
+        Positioned(top: 20.h, right: 20.w,
+            child: GestureDetector(
+              child: Container(
+                width: 40.w,
+                height: 40.w,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20.r)),
+                //child: Image.asset("assets/common/location_current_address.png", width: 30.w, height: 30.w),
+                child: Icon(Icons.my_location, size: 24.w,color: Colors.black.withOpacity(0.7)),
+              ),
+              onTap: () {
+                _mapController.moveCamera(
+                    CameraUpdate.newLatLng(_defaultLatLng));
+              },
+            )
         )
       ],
     );
