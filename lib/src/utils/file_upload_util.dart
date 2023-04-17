@@ -4,9 +4,14 @@ import 'package:common_utils/common_utils.dart';
 class FileUploadUtil {
   static final HttpHelper _httpHelper = HttpHelper.getInstance();
 
+  static List<CommonBottomSheetResultModel>  pickerOptions = [
+    CommonBottomSheetResultModel(name: "拍照上传", value: "0"),
+    CommonBottomSheetResultModel(name: "相册选取", value: "1"),
+    CommonBottomSheetResultModel(name: "取消", value: "2")
+  ];
 
   /// 单文件上传
-  static Future<dynamic> uploadSingle({required String filePath, required String id})  async {
+  static Future<dynamic> uploadSingleWithId({required String filePath, required String id})  async {
     MultipartFile image = MultipartFile.fromFileSync(filePath);
     FormData formData = FormData.fromMap({"file": image});
     EasyLoading.instance.maskType = EasyLoadingMaskType.black;
@@ -23,6 +28,23 @@ class FileUploadUtil {
     }
   }
 
+  /// 单文件上传
+  static Future<dynamic> uploadSingle({required String uploadPath, required String filePath})  async {
+    MultipartFile image = MultipartFile.fromFileSync(filePath);
+    FormData formData = FormData.fromMap({"file": image});
+    EasyLoading.instance.maskType = EasyLoadingMaskType.black;
+    EasyLoading.show(status: "图片上传中...");
+    try {
+      final data = await _httpHelper.post(uploadPath, data: formData);
+      EasyLoading.showToast("上传成功");
+     return Future.value(data);
+    } catch (e) {
+      EasyLoading.showToast("上传失败");
+    } finally {
+      EasyLoading.dismiss();
+      EasyLoading.instance.maskType = EasyLoadingMaskType.none;
+    }
+  }
 
 
   /// 多文件上传
