@@ -24,6 +24,8 @@ export 'package:amap_flutter_location/amap_location_option.dart';
 export 'package:amap_flutter_map/amap_flutter_map.dart';
 export 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 export 'package:curved_navigation_bar/curved_navigation_bar.dart';
+export 'package:flutter_sound_lite/flutter_sound.dart';
+export 'package:path_provider/path_provider.dart';
 
 // export 'package:fluwx/fluwx.dart';
 export 'package:fluwx_no_pay/fluwx_no_pay.dart';
@@ -83,7 +85,7 @@ export 'src/utils/color_util.dart';
 export 'src/utils/text_util.dart';
 export 'src/utils/image_picker_util.dart';
 export 'src/utils/common_cache.dart';
-export 'src/utils/file_saver_util.dart';
+export 'src/utils/file_download_util.dart';
 export 'src/utils/time_util.dart';
 export 'src/utils/event_bus_util.dart';
 export 'src/utils/connectivity_util.dart';

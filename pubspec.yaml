@@ -98,6 +98,10 @@ dependencies:
   #   url: git://github.com/jpush/jpush-flutter-plugin.git
   #   ref: master
 
+  # 录音插件
+  flutter_sound_lite: ^8.5.0
+  # 文件路径
+  path_provider: ^2.0.4
 
 dev_dependencies:
   flutter_test:
