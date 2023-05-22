@@ -85,7 +85,7 @@ export 'src/utils/color_util.dart';
 export 'src/utils/text_util.dart';
 export 'src/utils/image_picker_util.dart';
 export 'src/utils/common_cache.dart';
-export 'src/utils/file_download_util.dart';
+export 'src/utils/file_saver_util.dart';
 export 'src/utils/time_util.dart';
 export 'src/utils/event_bus_util.dart';
 export 'src/utils/connectivity_util.dart';

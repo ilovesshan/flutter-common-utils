@@ -134,9 +134,9 @@ class WxUtil {
       image = fluwx.WeChatImage.file(File(thumbFile));
     } else if (thumbBytes != null) {
       image = fluwx.WeChatImage.binary(thumbBytes);
-    } else if (TextUtils.isNotValid(networkThumb)) {
+    } else if (TextUtils.isNotEmpty(networkThumb)) {
       image = fluwx.WeChatImage.network(Uri.encodeFull(networkThumb));
-    } else if (TextUtils.isNotValid(assetThumb)) {
+    } else if (TextUtils.isNotEmpty(assetThumb)) {
       image = fluwx.WeChatImage.asset(assetThumb, suffix: ".png");
     }
     var model = fluwx.WeChatShareWebPageModel(

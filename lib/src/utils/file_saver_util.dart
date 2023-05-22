@@ -12,7 +12,7 @@ class FileSaverUtil {
     EasyLoading.show(status: "下载中....");
     try {
       var response = await Dio().get(imageUrl, options: Options(responseType: ResponseType.bytes));
-      final result = await ImageGallerySaver.saveImage(Uint8List.fromList(response.data), quality: 60, name: TextUtils.isValidWith(fileName, TimeUtil.currentTimeMillis().toString()));
+      final result = await ImageGallerySaver.saveImage(Uint8List.fromList(response.data), quality: 60, name: TextUtils.isEmptyWith(fileName, TimeUtil.currentTimeMillis().toString()));
       printLog(StackTrace.current, result);
       EasyLoading.showToast("下载成功");
     } catch (e) {

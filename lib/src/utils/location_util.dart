@@ -37,7 +37,7 @@ class LocationUtil {
 
     ///注册定位结果监听
     _locationListener = _locationPlugin.onLocationChanged().listen((Map<String, Object> result) {
-      if(result.length > 3 && TextUtils.isNotValid(result["latitude"].toString()) && TextUtils.isNotValid(result["longitude"].toString())){
+      if(result.length > 3 && TextUtils.isNotEmpty(result["latitude"].toString()) && TextUtils.isNotEmpty(result["longitude"].toString())){
         _locationResult = result;
         _stopLocation();
         double latitude = double.parse(result["latitude"].toString());
@@ -170,7 +170,7 @@ class LocationUtil {
     try {
       final result = await HttpHelper.getInstance().get(requestPath);
       // if(result!=null && TextUtils.isNotValid(result.data.toString()) && result.data["status"].toString() == "1"){
-      if(result!=null && TextUtils.isNotValid(result["regeocode"].toString()) && result["status"].toString() == "1"){
+      if(result!=null && TextUtils.isNotEmpty(result["regeocode"].toString()) && result["status"].toString() == "1"){
         onResultChanged(result["regeocode"]);
       }
       // printLog(StackTrace.current, result);

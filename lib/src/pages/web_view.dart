@@ -25,7 +25,7 @@ class _WebviewPageState extends State<WebviewPage> {
     _controller.future.then((controller) {
       _webViewController = controller;
       Map<String, String> header = {
-        "Authorization": "Bearer " + TextUtils.isValidWith("", ""),
+        "Authorization": "Bearer " + TextUtils.isEmptyWith("", ""),
       };
       _webViewController.loadUrl(path, headers: header);
     });
