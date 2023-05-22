@@ -5,7 +5,7 @@ import 'package:common_utils/common_utils.dart';
 import 'package:common_utils/src/utils/time_util.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class FileSaverUtil {
+class FileDownloadUtil {
 
   /// 下载图片
   static Future<void> downloadImage(String imageUrl, {bool isAsset = false, String fileName = ""}) async {

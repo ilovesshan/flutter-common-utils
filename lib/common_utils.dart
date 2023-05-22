@@ -95,7 +95,7 @@ export 'src/utils/common_cache.dart';
 export 'src/utils/connectivity_util.dart';
 export 'src/utils/encrypt_util.dart';
 export 'src/utils/event_bus_util.dart';
-export 'src/utils/file_saver_util.dart';
+export 'src/utils/file_download_util.dart';
 export 'src/utils/file_upload_util.dart';
 export 'src/utils/function_proxy.dart';
 export 'src/utils/image_picker_util.dart';
